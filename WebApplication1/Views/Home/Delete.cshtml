@@ -1,0 +1,40 @@
+﻿@model WebApplication1.Models.Catalog
+@{
+    ViewBag.Title = "Удаление продукта";
+}
+
+<h2>Удаление продукта: @Model.Name</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Название</dt>
+        <dd>@Model.Name</dd>
+
+        <dt>Описание</dt>
+        <dd>@Html.Raw(Model.Description ?? "")</dd>
+
+        <dt>Категория</dt>
+        <dd>@Model.Category ?? "-"</dd>
+
+        <dt>Размер</dt>
+        <dd>@Model.Size ?? "-"</dd>
+
+        <dt>Цвет</dt>
+        <dd>@Model.Color ?? "-"</dd>
+
+        <dt>Цена</dt>
+        <dd>@Model.Price.ToString("C")</dd>
+
+        <dt>Количество на складе</dt>
+        <dd>@Model.StockQuantity</dd>
+    </dl>
+
+    <div>
+        <form asp-controller="Home" asp-action="Delete" method="post">
+            <input type="hidden" asp-for="IdProduct" />
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="Удалить" />
+            </div>
+        </form>
+    </div>
+</div>

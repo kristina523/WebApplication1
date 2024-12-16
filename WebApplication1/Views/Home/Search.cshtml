@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication1.Models.Catalog>  
+
+@{
+    ViewData["Title"] = "Search Products";
+}
+
+<h2>Search Products</h2>
+
+<form asp-action="Search" asp-controller="Home" method="get">
+    <div class="form-group">
+        <label for="searchTerm">Search Term:</label>
+        <input type="text" class="form-control" id="searchTerm" name="searchTerm" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<br />
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Color</th>
+                <th>Size</th>
+                <th>StockQuantity</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var catalog in Model)
+            {
+                <tr>
+                    <td>@catalog.Name</td>
+                    <td>@catalog.Description</td>
+                    <td>@catalog.Category</td>
+                    <td>@catalog.Size</td>
+                    <td>@catalog.Color</td>
+                    <td>@catalog.StockQuantity</td>
+                    <td>@catalog.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No products found.</p>
+}
